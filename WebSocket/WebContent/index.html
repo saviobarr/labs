@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+	function callMyBackend(){
+		var ws = new WebSocket('ws://localhost:9081/WebSocket/mybe');
+		ws.onopen = function(){
+			ws.send(" HI my BE ");
+		}
+		
+		ws.onmessage = function(msg){
+			alert('####### '+msg.data);
+		}
+		
+		ws.onerror = function(){
+			alert('######## ERROR');
+		}
+		
+		ws.onclose = function(){
+			alert('#### CLOSE ');
+		}
+	}
+</script>
+<body>
+  <input type="button" value="CALL MY SERVER" onclick="callMyBackend()"/>
+</body>
+</html>
